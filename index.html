@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Pimp My Rect</title>
+
+        <script type="text/javascript" src="scripts/main.js"></script>
+        <script type="text/javascript" src="scripts/editor.js"></script>
+        <script type="text/javascript" src="scripts/output.js"></script>
+    </head>
+    <body>
+        <div id="Editor">
+            <input id="BackgroundColor" type="color" />
+            <span id="BackgroundColorValue"></span>
+
+            <input id="Size" type="number" min="10" max="1000" />
+            <span id="SizeValue"></span>
+
+            <input id="BorderRadius" type="range" min="0" max="100" />
+            <span id="BorderRadiusValue"></span>
+
+            <input id="Save" type="button" value="Save" />
+        </div>
+
+        <div id="Output"></div>
+    </body>
+</html>

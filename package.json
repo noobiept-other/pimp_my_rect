@@ -1,0 +1,7 @@
+{
+    "name": "pimp_my_rect",
+    "version": "1.0.0",
+    "devDependencies": {
+        "typescript": "~2.1.5"
+    }
+}
