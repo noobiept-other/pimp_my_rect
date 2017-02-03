@@ -21,6 +21,7 @@ module Editor {
         BORDER_RADIUS_VALUE = <HTMLSpanElement>document.getElementById( "BorderRadiusValue" );
 
         let save = <HTMLInputElement>document.getElementById( "Save" );
+        save.onclick = saveCurrentRect;
 
         BACKGROUND.onchange = function () {
             updateBackgroundColor( BACKGROUND.value );
@@ -33,6 +34,15 @@ module Editor {
         BORDER_RADIUS.onchange = function () {
             updateBorderRadius( BORDER_RADIUS.value );
         }
+    }
+
+
+    function saveCurrentRect() {
+        Gallery.add( {
+            color: BACKGROUND.value,
+            radius: BORDER_RADIUS.value,
+            size: SIZE.value
+        });
     }
 
 

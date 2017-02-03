@@ -16,4 +16,5 @@ window.onload = function () {
     Editor.init();
     Output.init();
     Editor.load( initValues );
+    Gallery.init( [ initValues ] );
 };
