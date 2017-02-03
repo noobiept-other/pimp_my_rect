@@ -7,14 +7,15 @@ interface RectInfo {
 
 window.onload = function () {
 
-    let initValues = {
+    let initRect = {
         size: '200',
         color: '#000000',
         radius: '5'
     }
 
+    AppStorage.init();
     Editor.init();
     Output.init();
-    Editor.load( initValues );
-    Gallery.init( [ initValues ] );
+    Editor.load( initRect );
+    Gallery.init( AppStorage.getRectList() );
 };

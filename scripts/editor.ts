@@ -38,11 +38,14 @@ module Editor {
 
 
     function saveCurrentRect() {
-        Gallery.add( {
+        var rect = {
             color: BACKGROUND.value,
             radius: BORDER_RADIUS.value,
             size: SIZE.value
-        });
+        };
+
+        Gallery.add( rect );
+        AppStorage.addRect( rect );
     }
 
 
