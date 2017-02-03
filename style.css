@@ -1,5 +1,15 @@
-.Item {
+#Output {
+    margin: 10px;
+}
+
+.control {
+    display: inline-block;
+    margin: 5px 10px;
+}
+
+.item {
     display: inline-block;
     width: 100px;
     height: 100px;
+    margin: 10px;
 }

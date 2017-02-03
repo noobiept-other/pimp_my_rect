@@ -15,7 +15,7 @@ module Gallery {
     export function add( rect: RectInfo ) {
         var item = document.createElement( "div" );
 
-        item.className = "Item";
+        item.className = "item";
         item.style.backgroundColor = rect.color;
         item.style.borderRadius = rect.radius + 'px';
 

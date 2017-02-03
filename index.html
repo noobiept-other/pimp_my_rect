@@ -13,16 +13,24 @@
     </head>
     <body>
         <div id="Editor">
-            <input id="BackgroundColor" type="color" />
-            <span id="BackgroundColorValue"></span>
-
-            <input id="Size" type="number" min="10" max="1000" />
-            <span id="SizeValue"></span>
-
-            <input id="BorderRadius" type="range" min="0" max="100" />
-            <span id="BorderRadiusValue"></span>
-
-            <input id="Save" type="button" value="Save" />
+            <div class="control">
+                <span>Background Color:</span>
+                <input id="BackgroundColor" type="color" />
+                <span id="BackgroundColorValue"></span>
+            </div>
+            <div class="control">
+                <span>Size:</span>
+                <input id="Size" type="range" min="10" max="500" />
+                <span id="SizeValue"></span>
+            </div>
+            <div class="control">
+                <span>Border Radius:</span>
+                <input id="BorderRadius" type="range" min="0" max="200" />
+                <span id="BorderRadiusValue"></span>
+            </div>
+            <div class="control">
+                <input id="Save" type="button" value="Save" />
+            </div>
         </div>
 
         <div id="Output"></div>
