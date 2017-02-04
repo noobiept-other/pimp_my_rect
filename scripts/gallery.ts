@@ -13,7 +13,10 @@ module Gallery {
 
 
     export function add( rect: RectInfo ) {
+
+        var container = document.createElement( "div" );
         var item = document.createElement( "div" );
+        var remove = document.createElement( "div" );
 
         item.className = "item";
         item.style.backgroundColor = rect.color;
@@ -27,6 +30,17 @@ module Gallery {
             Editor.load( rect );
         };
 
-        GALLERY_LIST.appendChild( item );
+        remove.textContent = "X";
+        remove.className = "removeItem";
+        remove.onclick = function () {
+            GALLERY_LIST.removeChild( container );
+            AppStorage.removeRect( rect );
+        }
+
+        container.className = "itemContainer";
+        container.appendChild( item );
+        container.appendChild( remove );
+
+        GALLERY_LIST.appendChild( container );
     }
 }

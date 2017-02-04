@@ -23,6 +23,11 @@ module AppStorage {
     }
 
 
+    function saveRectList() {
+        set( "rect_list", RECT_LIST );
+    }
+
+
     export function getRectList() {
         return RECT_LIST;
     }
@@ -30,7 +35,16 @@ module AppStorage {
 
     export function addRect( rect: RectInfo ) {
         RECT_LIST.push( rect );
+        saveRectList();
+    }
 
-        set( "rect_list", RECT_LIST );
+
+    export function removeRect( rect: RectInfo ) {
+        var index = RECT_LIST.indexOf( rect );
+
+        if ( index >= 0 ) {
+            RECT_LIST.splice( index, 1 );
+            saveRectList();
+        }
     }
 }
