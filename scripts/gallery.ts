@@ -23,6 +23,10 @@ module Gallery {
         item.setAttribute( "data-size", rect.size );
         item.setAttribute( "data-radius", rect.radius );
 
+        item.onclick = function () {
+            Editor.load( rect );
+        };
+
         GALLERY_LIST.appendChild( item );
     }
 }
