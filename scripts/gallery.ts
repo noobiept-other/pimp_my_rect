@@ -20,7 +20,6 @@ module Gallery {
 
         item.className = "item";
         item.style.backgroundColor = rect.color;
-        item.style.borderRadius = rect.radius + 'px';
 
         item.setAttribute( "data-color", rect.color );
         item.setAttribute( "data-size", rect.size );
@@ -42,5 +41,9 @@ module Gallery {
         container.appendChild( remove );
 
         GALLERY_LIST.appendChild( container );
+
+        // need to adjust the border radius, since the gallery rect doesn't have the same size as the original one
+        var itemSize = item.offsetWidth;
+        item.style.borderRadius = ( Number( itemSize ) * Number( rect.radius ) / Number( rect.size ) ) + 'px';
     }
 }
