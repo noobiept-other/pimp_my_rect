@@ -23,6 +23,11 @@ module Editor {
         let save = <HTMLInputElement>document.getElementById( "Save" );
         save.onclick = saveCurrentRect;
 
+        let sort = <HTMLSelectElement>document.getElementById( "GallerySort" );
+        sort.onchange = function () {
+            Gallery.sort( <keyof RectInfo>sort.options[ sort.selectedIndex ].value );
+        };
+
         BACKGROUND.onchange = function () {
             updateBackgroundColor( BACKGROUND.value );
         };
