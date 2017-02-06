@@ -9,6 +9,8 @@ module Editor {
     var BORDER_RADIUS: HTMLInputElement;
     var BORDER_RADIUS_VALUE: HTMLSpanElement;
 
+    var SORT: HTMLSelectElement;
+
 
     export function init() {
         BACKGROUND = <HTMLInputElement>document.getElementById( "BackgroundColor" );
@@ -23,9 +25,9 @@ module Editor {
         let save = <HTMLInputElement>document.getElementById( "Save" );
         save.onclick = saveCurrentRect;
 
-        let sort = <HTMLSelectElement>document.getElementById( "GallerySort" );
-        sort.onchange = function () {
-            Gallery.sort( <keyof RectInfo>sort.options[ sort.selectedIndex ].value );
+        SORT = <HTMLSelectElement>document.getElementById( "GallerySort" );
+        SORT.onchange = function () {
+            Gallery.sort( <keyof RectInfo>getSortMethod() );
         };
 
         BACKGROUND.onchange = function () {
@@ -42,6 +44,11 @@ module Editor {
     }
 
 
+    export function getSortMethod() {
+        return SORT.options[ SORT.selectedIndex ].value;
+    }
+
+
     function saveCurrentRect() {
         var rect = {
             color: BACKGROUND.value,
@@ -49,8 +56,8 @@ module Editor {
             size: SIZE.value
         };
 
-        Gallery.add( rect );
         AppStorage.addRect( rect );
+        Gallery.add( rect );
     }
 
 

@@ -7,12 +7,13 @@ module Gallery {
         GALLERY_LIST = <HTMLDivElement>document.getElementById( "GalleryList" );
 
         buildGallery( items );
+        sort( "size" );
     }
 
 
     function buildGallery( items: RectInfo[] ) {
         for ( let a = 0; a < items.length; a++ ) {
-            add( items[ a ] );
+            add( items[ a ], false );
         }
     }
 
@@ -22,7 +23,7 @@ module Gallery {
     }
 
 
-    export function add( rect: RectInfo ) {
+    export function add( rect: RectInfo, sortAfter = true ) {
 
         var container = document.createElement( "div" );
         var item = document.createElement( "div" );
@@ -55,6 +56,10 @@ module Gallery {
         // need to adjust the border radius, since the gallery rect doesn't have the same size as the original one
         var itemSize = item.offsetWidth;
         item.style.borderRadius = ( Number( itemSize ) * Number( rect.radius ) / Number( rect.size ) ) + 'px';
+
+        if ( sortAfter ) {
+            sort( <keyof RectInfo>Editor.getSortMethod() );
+        }
     }
 
 
