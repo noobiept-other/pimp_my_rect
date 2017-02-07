@@ -16,6 +16,11 @@ body {
     transition: width 0.2s, height 0.2s, border-radius 0.2s;
 }
 
+#GalleryList {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
 .control {
     display: inline-block;
     margin: 5px 10px;
@@ -43,4 +48,8 @@ body {
 
 .removeItem:hover {
     opacity: 0.8;
+}
+
+.selected {
+    border: 3px dashed rgba(0, 0, 0, 0.5);
 }
