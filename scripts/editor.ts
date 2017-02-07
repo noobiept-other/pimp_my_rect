@@ -56,8 +56,14 @@ module Editor {
             size: SIZE.value
         };
 
+        add( rect );
+    }
+
+
+    export function add( rect: RectInfo ) {
         AppStorage.addRect( rect );
-        Gallery.add( rect );
+        let container = Gallery.add( rect );
+        Gallery.select( container );
     }
 
 
@@ -82,9 +88,9 @@ module Editor {
     }
 
 
-    export function load( initValues: RectInfo ) {
-        updateBackgroundColor( initValues.color );
-        updateSize( initValues.size );
-        updateBorderRadius( initValues.radius );
+    export function load( rect: RectInfo ) {
+        updateBackgroundColor( rect.color );
+        updateSize( rect.size );
+        updateBorderRadius( rect.radius );
     }
 }

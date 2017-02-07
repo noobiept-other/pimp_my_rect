@@ -1,6 +1,7 @@
 module Gallery {
 
     var GALLERY_LIST: HTMLDivElement;
+    var SELECTED: HTMLDivElement;
 
 
     export function init( items: RectInfo[] ) {
@@ -8,6 +9,22 @@ module Gallery {
 
         buildGallery( items );
         sort( "size" );
+
+        // start the application with the first rect selected
+        let first = GALLERY_LIST.firstElementChild;
+
+        if ( first ) {
+            select( <HTMLDivElement>first );
+        }
+
+        // add an initial rect
+        else {
+            Editor.add( {
+                size: '200',
+                color: '#000000',
+                radius: '5'
+            });
+        }
     }
 
 
@@ -29,15 +46,14 @@ module Gallery {
         var item = document.createElement( "div" );
         var remove = document.createElement( "div" );
 
+        container.setAttribute( "data-color", rect.color );
+        container.setAttribute( "data-size", rect.size );
+        container.setAttribute( "data-radius", rect.radius );
+
         item.className = "item";
         item.style.backgroundColor = rect.color;
-
-        item.setAttribute( "data-color", rect.color );
-        item.setAttribute( "data-size", rect.size );
-        item.setAttribute( "data-radius", rect.radius );
-
         item.onclick = function () {
-            Editor.load( rect );
+            select( container );
         };
 
         remove.textContent = "X";
@@ -60,17 +76,47 @@ module Gallery {
         if ( sortAfter ) {
             sort( <keyof RectInfo>Editor.getSortMethod() );
         }
+
+        return container;
     }
 
 
     export function sort( property: keyof RectInfo ) {
-        var items = AppStorage.getRectList().slice();
+        var items = [];
 
+        // get a list with all the rects
+        for ( var a = 0; a < GALLERY_LIST.childElementCount; a++ ) {
+            items.push( GALLERY_LIST.children[ a ] );
+        }
+
+        // sort them based on the given property (size/radius/etc)
         items.sort( function ( a, b ) {
-            return Number( b[ property ] ) - Number( a[ property ] );
+            return Number( b.getAttribute( 'data-' + property ) ) - Number( a.getAttribute( 'data-' + property ) );
         });
 
+        // rebuild the list
         clearGallery();
-        buildGallery( items );
+
+        for ( var a = 0; a < items.length; a++ ) {
+            GALLERY_LIST.appendChild( items[ a ] );
+        }
+    }
+
+
+    export function select( rect: HTMLDivElement ) {
+
+        let rectInfo = {
+            size: rect.getAttribute( "data-size" ) !,
+            radius: rect.getAttribute( "data-radius" ) !,
+            color: rect.getAttribute( "data-color" ) !
+        };
+        Editor.load( rectInfo );
+
+        if ( SELECTED ) {
+            SELECTED.classList.remove( 'selected' );
+        }
+
+        rect.classList.add( 'selected' );
+        SELECTED = rect;
     }
 }
